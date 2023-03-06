@@ -15,10 +15,7 @@ class DoctorsListController extends Controller
         $spec = $request->spec;
         $vote = $request->vote;
     
-        $doctorsList = User::with('user_detail', 'specializations', 'feedback')
-            ->leftJoin('feedback', 'users.id', '=', 'feedback.user_id')
-            ->groupBy('users.id')
-            ->select('users.*', DB::raw('AVG(feedback.vote) as feedback_avg_vote'));
+        $doctorsList = User::with('user_detail', 'specializations', 'feedback')->withAvg('feedback', 'vote');
     
         if ($request->spec) {
             $doctorsList = $doctorsList->whereHas('specializations', function ($q) use ($spec) {
