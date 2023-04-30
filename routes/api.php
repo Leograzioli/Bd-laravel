@@ -23,10 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //guests
 Route::post('/auth/register', [AuthController:: class, 'create']);
 Route::post('/auth/login', [AuthController:: class, 'login']);
-Route::post('/auth/logout', [AuthController:: class, 'logout']);
+
+
 
 Route::get('/guest/doctorslist', [DoctorsListController::class, 'index']);
 Route::get('/guest/doctor', [DoctorsListController::class, 'show']);
 
 
 //auth
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/auth/logout', [AuthController:: class, 'logout']);
+});

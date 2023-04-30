@@ -42,7 +42,7 @@ class DoctorsListController extends Controller
     //return a single doctor on the url /guest/doctor
     //the request acept Id as params to search doctor by id.
     public function show(Request $request) {
-        $doctor = User::where('id', $request->id)->first();
+        $doctor = User::where('id', $request->id)->first(); // da aggiungere select senza dati sensibile
         $specializations = Specialization::all();
 
         if ($doctor) {     

@@ -42,6 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // //cercare gli append.. exemple:
+    // public $appends = ['countLikes'];
+    // public function getCountLikesAttribute() {
+    //     return $this->likes->count();
+    // }
 
     //relations
     public function user_detail() {
