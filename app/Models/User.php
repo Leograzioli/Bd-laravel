@@ -42,30 +42,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // //cercare gli append.. exemple:
-    // public $appends = ['countLikes'];
-    // public function getCountLikesAttribute() {
-    //     return $this->likes->count();
-    // }
 
     //relations
-    public function user_detail() {
+    public function user_detail()
+    {
         return $this->hasOne(user_detail::class);
     }
 
-    public function messages() {
+    public function messages()
+    {
         return $this->hasMany(Message::class);
     }
 
-    public function feedback() {
+    public function feedback()
+    {
         return $this->hasMany(feedback::class);
     }
 
-    public function specializations() {
+    public function specializations()
+    {
         return $this->belongsToMany(specialization::class);
     }
 
-    public function sponsors() {
+    public function sponsors()
+    {
         return $this->belongsToMany(Sponsor::class);
     }
 }
