@@ -37,4 +37,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('/auth/messages', [MessageController::class, 'index']);
     Route::get('/auth/message/{id}', [MessageController::class, 'show']);
+    Route::delete('/auth/message/delete/{id}', [MessageController::class, 'destroy']);
 });
