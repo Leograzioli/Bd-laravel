@@ -23,7 +23,7 @@ class MessageController extends Controller
 
     public function show($id)
     {
-        $message = Message::where('id', $id)->first();
+        $message = Message::find($id);
 
         return response()->json([
             'status' => true,
@@ -68,7 +68,7 @@ class MessageController extends Controller
 
         return response()->json([
             'status' => true,
-            'info' => 'the message was deleted',
+            'message' => 'message deleted',
         ]);
     }
 }
