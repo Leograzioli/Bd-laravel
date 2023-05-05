@@ -6,15 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $user = Auth::user();
-
-        if ($user) {
-            $messages = Message::where('user_id', $user->id)->get();
-        }
+        $messages = Message::where('user_id', $user->id)->paginate(10);
 
         return response()->json([
             'status' => true,
@@ -22,12 +21,9 @@ class MessageController extends Controller
         ]);
     }
 
-    public function show($id) {
-        $user = Auth::user();
-
-        if ($user) {
-            $message = Message::where('id', $id)->first();
-        }
+    public function show($id)
+    {
+        $message = Message::where('id', $id)->first();
 
         return response()->json([
             'status' => true,
@@ -35,8 +31,38 @@ class MessageController extends Controller
         ]);
     }
 
-    public function destroy($id) {
+    public function store(Request $request)
+    {
+        $data = $request->all();
 
+        $validator = Validator::make($data, [
+            'name' => ['required'],
+            'accountholder' => ['required', 'email', 'max:150'],
+            'message' => ['required'],
+            'user_id' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+
+        $message = new Message();
+        $message->name = $data['name'];
+        $message->accountholder = $data['accountholder'];
+        $message->message = $data['message'];
+        $message->user_id = $data['user_id'];
+        $message->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function destroy($id)
+    {
         $message = Message::find($id);
         $message->delete();
 

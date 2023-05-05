@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\api\DoctorsListController;
 use App\Http\Controllers\api\MessageController;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/auth/register', [AuthController:: class, 'create']);
 Route::post('/auth/login', [AuthController:: class, 'login']);
 
-
-
+Route::post('guest/message/add', [MessageController::class, 'store']);
 Route::get('/guest/doctorslist', [DoctorsListController::class, 'index']);
 Route::get('/guest/doctor', [DoctorsListController::class, 'show']);
 
