@@ -49,12 +49,19 @@ class MessageController extends Controller
             ]);
         }
 
+        // $message = new Message();
+        // $message->fill($data);
+        // $message->save();
+
+        // $message = new Message();
+        // $message->name = $data['name'];
+        // $message->accountholder = $data['accountholder'];
+        // $message->message = $data['message'];
+        // $message->user_id = $data['user_id'];
+        // $message->save();
+
         $message = new Message();
-        $message->name = $data['name'];
-        $message->accountholder = $data['accountholder'];
-        $message->message = $data['message'];
-        $message->user_id = $data['user_id'];
-        $message->save();
+        $message->create($data);
 
         return response()->json([
             'success' => true
@@ -64,11 +71,21 @@ class MessageController extends Controller
     public function destroy($id)
     {
         $message = Message::find($id);
-        $message->delete();
+        if ($message) {
 
-        return response()->json([
-            'status' => true,
-            'message' => 'message deleted',
-        ]);
+            $message->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'message deleted',
+                'test' => $message
+            ]);
+
+        } else {
+            
+            return response()->json([
+                'status' => false,
+            ]);
+        }
     }
 }
