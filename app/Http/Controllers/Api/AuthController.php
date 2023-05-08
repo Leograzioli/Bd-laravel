@@ -68,7 +68,7 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            if(!Auth::attempt($request->only(['email', 'password']))) {
+            if(!Auth::attempt($request->only(['email', 'password'], /* true to save a remember-me coockie*/))) {
                 return response()->json([
                     'status' => false,
                     'message' => 'email and password does not match'

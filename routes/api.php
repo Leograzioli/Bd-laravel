@@ -46,5 +46,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //feedback routes
     Route::get('/auth/feedback', [FeedbackController::class, 'index']);
     Route::get('/auth/feedback/{id}', [FeedbackController::class, 'show']);
-    Route::delete('/auth/feedback/delete/{id}', [FeedbackController::class, 'destroy']);
 });

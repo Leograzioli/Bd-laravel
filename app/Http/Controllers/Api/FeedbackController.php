@@ -61,15 +61,4 @@ class FeedbackController extends Controller
             'status' => true
         ]);
     }
-
-    public function destroy($id) {
-
-        $feedback = Feedback::find($id);
-        $feedback->delete();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'feedback deleted'
-        ]);
-    }
 }
