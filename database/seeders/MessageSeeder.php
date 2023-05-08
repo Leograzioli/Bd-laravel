@@ -38,6 +38,7 @@ class MessageSeeder extends Seeder
             $newMessage->name = $faker->name();
             $newMessage->accountholder = $faker->email();
             $newMessage->message = $messages[$faker->numberBetween(0, 14)];
+            $newMessage->is_read = false;
             $newMessage->user_id = $faker->numberBetween(1, 41);
             $newMessage->save();            
         }

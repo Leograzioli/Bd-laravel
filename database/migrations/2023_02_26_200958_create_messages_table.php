@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('accountholder');
             $table->string('name');
             $table->text('message');
+            $table->boolean('is_read');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

@@ -13,6 +13,7 @@ class Message extends Model
         'name',
         'accountholder',
         'message',
+        'is_read',
         'user_id'
     ];
 

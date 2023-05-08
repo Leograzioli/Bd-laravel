@@ -37,10 +37,11 @@ Route::get('/guest/doctor', [DoctorsListController::class, 'show']);
 //auth
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/auth/logout', [AuthController:: class, 'logout']);
-
+    
     //messages route
     Route::get('/auth/messages', [MessageController::class, 'index']);
     Route::get('/auth/message/{id}', [MessageController::class, 'show']);
+    Route::put('/auth/message/edit/{id}', [MessageController::class, 'update']);
     Route::delete('/auth/message/delete/{id}', [MessageController::class, 'destroy']);
 
     //feedback routes

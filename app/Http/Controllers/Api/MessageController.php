@@ -68,6 +68,12 @@ class MessageController extends Controller
         ]);
     }
 
+    public function update($id)
+    {
+        $message = Message::find($id);
+        $message->update(['is_read' => 1]);
+    }
+
     public function destroy($id)
     {
         $message = Message::find($id);
@@ -80,9 +86,8 @@ class MessageController extends Controller
                 'message' => 'message deleted',
                 'test' => $message
             ]);
-
         } else {
-            
+
             return response()->json([
                 'status' => false,
             ]);
