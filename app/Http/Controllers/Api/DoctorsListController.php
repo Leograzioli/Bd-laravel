@@ -27,7 +27,7 @@ class DoctorsListController extends Controller
         }
     
         if ($request->vote) {
-            $doctorsList = $doctorsList->having('feedback_avg_vote', '>=', $vote);
+            $doctorsList = $doctorsList->having('feedback_avg_vote', '>=', $vote)->orderBy('feedback_avg_vote', 'desc' );
         }
     
         $doctors = $doctorsList->paginate(12);
