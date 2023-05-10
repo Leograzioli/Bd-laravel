@@ -12,7 +12,7 @@ class UserController extends Controller
     public function show () {
         $CurrentUser = Auth::user();
         
-        $user = User::where('id', $CurrentUser->id)->with('user_detail')->first();
+        $user = User::where('id', $CurrentUser->id)->with('user_detail', 'specializations')->first();
         
 
         return response()->json([
