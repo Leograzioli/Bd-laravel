@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\api\DoctorsListController;
 use App\Http\Controllers\api\FeedbackController;
 use App\Http\Controllers\api\MessageController;
+use App\Http\Controllers\api\UserController;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -47,4 +48,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //feedback routes
     Route::get('/auth/feedback', [FeedbackController::class, 'index']);
     Route::get('/auth/feedback/{id}', [FeedbackController::class, 'show']);
+
+    //user routes
+    Route::get('auth/user', [UserController::class, 'show']);
 });
