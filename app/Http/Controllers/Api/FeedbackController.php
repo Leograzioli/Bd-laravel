@@ -13,7 +13,7 @@ class FeedbackController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        $feedback = Feedback::where('user_id', $user->id)->paginate(10);
+        $feedback = Feedback::where('user_id', $user->id)->orderBy('created_at', 'DESC')->paginate(10);
 
         return response()->json([
             'status' => true,
