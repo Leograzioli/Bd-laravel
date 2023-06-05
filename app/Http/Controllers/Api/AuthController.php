@@ -52,7 +52,7 @@ class AuthController extends Controller
     {
 
         $validatedUser = Validator::make($request->all(), [
-            'email' => 'required',
+            'email' => 'required|email|max:255|exists:users,email',
             'password' => 'required',
         ]);
 
@@ -67,7 +67,10 @@ class AuthController extends Controller
         if (!Auth::attempt($request->only(['email', 'password'], /* true to save a remember-me coockie*/))) {
             return response()->json([
                 'status' => false,
-                'message' => 'email and password does not match'
+                'message' => 'validation error',
+                'error' => [
+                    'password' => ['the password is incorrect' ]
+                ]
             ], 401);
         }
 
