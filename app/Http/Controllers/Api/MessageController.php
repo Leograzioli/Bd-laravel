@@ -46,7 +46,7 @@ class MessageController extends Controller
             return response()->json([
                 'success' => false,
                 'errors' => $validator->errors()
-            ]);
+            ], 401);
         }
 
         // $message = new Message();
